@@ -14,16 +14,18 @@ class Sprite {
         this.image = new Image()
         this.image.src = imageSrc
     }
+
+    draw() {
+        if (!this.image) return
+        c.drawImage(this.image, this.position.x, this.position.y)
+    }
+    
+    update() {
+        this.draw()
+    }
 }
 
-draw() {
-    if (!this.image) return
-    c.drawImage(this.image, this.position.x, this.position.y)
-}
 
-update() {
-    this.draw()
-}
 
 class Player {
     constructor(position)   {
@@ -74,13 +76,14 @@ const Background = new Sprite({
         x: 0,
         Y: 0,
     },
-    //Background here
+    imageSrc: './Images/34c0802ec5c14ac34e7491bcb0e3cfb6.jpg',
 })
 
 function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
+    Background.update()
     player.update()
     player2.update()
 
