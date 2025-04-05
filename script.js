@@ -73,7 +73,7 @@ const Background = new Sprite({
     position: {
         x: 0,
         Y: 0,
-    }
+    },
     //Background here
 })
 
