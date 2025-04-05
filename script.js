@@ -71,19 +71,22 @@ const keys = {
     },
 }
 
-const Background = new Sprite({
+const background = new Sprite({
     position: {
         x: 0,
-        Y: 0,
+        y: 0,
     },
-    imageSrc: './Images/34c0802ec5c14ac34e7491bcb0e3cfb6.jpg',
+    imageSrc: './Images/1131823_vannzilla_pixel-art-cave-background.png',
 })
 
 function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    Background.update()
+    c.save()
+    c.scale(4, 4)
+    background.update()
+    c.restore()
     player.update()
     player2.update()
 
