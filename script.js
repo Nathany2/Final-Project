@@ -8,22 +8,23 @@ canvas.height = 576
 
 const gravity = 0.5
 
-class Sprite {
-    constructor({position, imageSrc}) {
-        this.position = position
-        this.image = new Image()
-        this.image.src = imageSrc
-    }
+//class Sprite {
+//    constructor({position, imageSrc}) {
+//        this.position = position
+//        this.image = new Image()
+//        this.image.src = imageSrc
+//    }
 
-    draw() {
-        if (!this.image) return
-        c.drawImage(this.image, this.position.x, this.position.y)
-    }
-    
-    update() {
-        this.draw()
-    }
-}
+//    draw() {
+//        if (!this.image) return
+//        c.drawImage(this.image, this.position.x, this.position.y)
+//    }
+//    
+//    update() {
+//        this.draw()
+//    }
+//}
+
 
 
 
@@ -38,7 +39,7 @@ class Player {
     }
 
     draw() {
-        c.fillStyle = 'red'
+        c.fillStyle = '#92ABEA'
         c.fillRect(this.position.x, this.position.y, 100, this.height)
     }
 
@@ -57,10 +58,7 @@ const player = new Player({
     x: 0,
     y: 0,
 })
-const player2 = new Player({
-    x: 300,
-    y: 100,
-})
+
 
 const keys = {
     d: {
@@ -71,29 +69,41 @@ const keys = {
     },
 }
 
-const background = new Sprite({
-    position: {
-        x: 0,
-        y: 0,
-    },
-    imageSrc: './Images/1131823_vannzilla_pixel-art-cave-background.png',
-})
+//const background = new Sprite({
+//    position: {
+//        x: 0,
+//        y: 0,
+//    },
+//    imageSrc: './Images/1131823_vannzilla_pixel-art-cave-background.png',
+//})
 
 function animate() {
     window.requestAnimationFrame(animate)
-    c.fillStyle = 'black'
+    c.fillStyle = 'Black'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    c.save()
-    c.scale(4, 4)
-    background.update()
-    c.restore()
+  //  c.save()
+  //  c.scale(4, 4)
+  //  background.update()
+  //  c.restore()
     player.update()
-    player2.update()
+
 
     player.velocity.x = 0
     if (keys.d.pressed) player.velocity.x = 5
     else if (keys.a.pressed) player.velocity.x = -5
+
+
+   
+    
+    c.fillStyle = 'grey'
+    c.fillRect(canvas.width / 2 - 50, canvas. 
+    height / 2 - 50, 700, 100)
+
+    
+
 }
+
+
 
 animate()
 
@@ -127,3 +137,5 @@ window.addEventListener('keyup', (event) => {
          break 
     }
  })
+
+
