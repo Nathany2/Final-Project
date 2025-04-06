@@ -54,11 +54,36 @@ class Player {
         else this.velocity.y = 0
     }
 }
+
+class Platform {
+    constructor({x, y, width, height}) {
+        this.position = {
+            x,
+            y
+        }
+        this.width = width
+        this.height = height
+    }
+
+    draw() {
+        c.fillStyle = 'grey'
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
+}
+
 const player = new Player({
     x: 0,
     y: 0,
 })
 
+const platforms = [
+    new Platform({
+        x: canvas.width / 2 - 50,
+        y: canvas.height / 2 - 50,
+        width: 700,
+        height: 100
+    })
+]
 
 const keys = {
     d: {
@@ -93,11 +118,20 @@ function animate() {
     else if (keys.a.pressed) player.velocity.x = -5
 
 
-   
     
-    c.fillStyle = 'grey'
-    c.fillRect(canvas.width / 2 - 50, canvas. 
-    height / 2 - 50, 700, 100)
+    platforms.forEach(platform => {
+        platform.draw()
+
+        if (
+            player.position.y + player.height <= platform.position.y &&
+            player.position.y + player.height + player.velocity.y >= platform.position.y &&
+            player.position.x + 100 >= platform.position.x &&
+            player.position.x <= platform.position.x + platform.width
+        ) {
+            player.velocity.y = 0;
+        }
+    })
+    
 
     
 
@@ -137,5 +171,4 @@ window.addEventListener('keyup', (event) => {
          break 
     }
  })
-
 
