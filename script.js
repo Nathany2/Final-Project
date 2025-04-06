@@ -3,28 +3,10 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-canvas.width = 1024
-canvas.height = 576
+canvas.width = 2024
+canvas.height = 5076
 
 const gravity = 0.5
-
-//class Sprite {
-//    constructor({position, imageSrc}) {
-//        this.position = position
-//        this.image = new Image()
-//        this.image.src = imageSrc
-//    }
-
-//    draw() {
-//        if (!this.image) return
-//        c.drawImage(this.image, this.position.x, this.position.y)
-//    }
-//    
-//    update() {
-//        this.draw()
-//    }
-//}
-
 
 
 
@@ -66,7 +48,7 @@ class Platform {
     }
 
     draw() {
-        c.fillStyle = 'grey'
+        c.fillStyle = '#cececd'
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }
@@ -75,14 +57,68 @@ const player = new Player({
     x: 0,
     y: 0,
 })
-
+//Platforms
 const platforms = [
     new Platform({
-        x: canvas.width / 2 - 50,
-        y: canvas.height / 2 - 50,
+        x: canvas.width / 4,
+        y: canvas.height / 10,
         width: 700,
-        height: 100
-    })
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / -200,
+        y: canvas.height / 20,
+        width: 300,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / -700,
+        y: canvas.height / 7,
+        width: 300,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 90,
+        y: canvas.height / 7,
+        width: 400,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 1.4,
+        y: canvas.height / 7,
+        width: 600,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 2,
+        y: canvas.height / 6,
+        width: 400,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 1.4,
+        y: canvas.height / 5,
+        width: 700,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 1.7,
+        y: canvas.height / 20,
+        width: 900,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 90,
+        y: canvas.height / 4,
+        width: 1000,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 90,
+        y: canvas.height / 5,
+        width: 600,
+        height: 50
+    }),
 ]
 
 const keys = {
@@ -94,28 +130,18 @@ const keys = {
     },
 }
 
-//const background = new Sprite({
-//    position: {
-//        x: 0,
-//        y: 0,
-//    },
-//    imageSrc: './Images/1131823_vannzilla_pixel-art-cave-background.png',
-//})
+
 
 function animate() {
     window.requestAnimationFrame(animate)
-    c.fillStyle = 'Black'
+    c.fillStyle = '#1c1c1c'
     c.fillRect(0, 0, canvas.width, canvas.height)
-  //  c.save()
-  //  c.scale(4, 4)
-  //  background.update()
-  //  c.restore()
     player.update()
 
 
     player.velocity.x = 0
-    if (keys.d.pressed) player.velocity.x = 5
-    else if (keys.a.pressed) player.velocity.x = -5
+    if (keys.d.pressed) player.velocity.x = 7
+    else if (keys.a.pressed) player.velocity.x = -7
 
 
     
