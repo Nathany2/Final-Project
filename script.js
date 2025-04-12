@@ -4,7 +4,7 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
 canvas.width = 2024
-canvas.height = 5076
+canvas.height = 4076
 
 const gravity = 0.5
 
@@ -14,7 +14,7 @@ class Player {
     constructor(position)   {
         this.position = position
         this.velocity = {
-            x:0,
+            x: 0,
             y: 1,
         }
         this.height = 100 
@@ -119,6 +119,84 @@ const platforms = [
         width: 600,
         height: 50
     }),
+    new Platform({
+        x: canvas.width / 1000,
+        y: canvas.height / 4,
+        width: 1600,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 1.5,
+        y: canvas.height / 3.3,
+        width: 600,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 8,
+        y: canvas.height / 3,
+        width: 800,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 2,
+        y: canvas.height / 2.6,
+        width: 600,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 8,
+        y: canvas.height / 2.3,
+        width: 600,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        width: 800,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 30000,
+        y: canvas.height / 1.7,
+        width: 900,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 2,
+        y: canvas.height / 1.6,
+        width: 600,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 4,
+        y: canvas.height / 1.4,
+        width: 800,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 7,
+        y: canvas.height / 1.2,
+        width: 600,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 3,
+        y: canvas.height / 1.2,
+        width: 800,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 2,
+        y: canvas.height / 1.1,
+        width: 300,
+        height: 50
+    }),
+    new Platform({
+        x: canvas.width / 20,
+        y: canvas.height / 1.25,
+        width: 500,
+        height: 50
+    }),
 ]
 
 const keys = {
@@ -197,4 +275,3 @@ window.addEventListener('keyup', (event) => {
          break 
     }
  })
-
