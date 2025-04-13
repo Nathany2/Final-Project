@@ -21,7 +21,8 @@ class Player {
             x: 0,
             y: 1,
         }
-        this.height = 100 
+        this.height = 100
+        this.isGrounded = false
     }
 
     draw() {
@@ -37,7 +38,10 @@ class Player {
 
         if (this.position.y + this.height + this.velocity.y < canvas.height)
           this.velocity.y += gravity
-        else this.velocity.y = 0
+        else {
+            this.velocity.y = 0
+            this.isGrounded = true
+        }
     }
 }
 
@@ -58,7 +62,7 @@ class Platform {
 }
 
 const player = new Player({
-    x: 600,
+    x: 200,
     y: 200,
 })
 //Platforms
@@ -248,7 +252,7 @@ function animate() {
         player.velocity.x = -7
     }
 
-    
+    player.isGrounded = false
     
     platforms.forEach(platform => {
         platform.draw()
@@ -260,6 +264,7 @@ function animate() {
             player.position.x <= platform.position.x + platform.width
         ) {
             player.velocity.y = 0;
+            player.isGrounded = true
         }
 
         if (
@@ -306,7 +311,11 @@ window.addEventListener('keydown', (event) => {
         break 
 
     case 'w':
-        player.velocity.y = -20
+        if (player.isGrounded) {
+            player.velocity.y = -20
+            player.isGrounded = false
+        }
+        
         break 
 
    }
