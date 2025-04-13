@@ -62,7 +62,7 @@ class Platform {
 }
 
 const player = new Player({
-    x: 200,
+    x: 600,
     y: 200,
 })
 //Platforms
