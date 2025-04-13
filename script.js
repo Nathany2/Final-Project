@@ -7,6 +7,10 @@ canvas.width = 2024
 canvas.height = 4076
 
 const gravity = 0.5
+let scrollOffset = {
+    x: 0,
+    y: 0
+}
 
 
 
@@ -22,7 +26,7 @@ class Player {
 
     draw() {
         c.fillStyle = '#92ABEA'
-        c.fillRect(this.position.x, this.position.y, 100, this.height)
+        c.fillRect(this.position.x - scrollOffset.x, this.position.y - scrollOffset.y, 100, this.height)
     }
 
     update() {
@@ -49,13 +53,13 @@ class Platform {
 
     draw() {
         c.fillStyle = '#cececd'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+        c.fillRect(this.position.x - scrollOffset.x, this.position.y - scrollOffset.y, this.width, this.height)
     }
 }
 
 const player = new Player({
-    x: 0,
-    y: 0,
+    x: 600,
+    y: 200,
 })
 //Platforms
 const platforms = [
@@ -197,6 +201,25 @@ const platforms = [
         width: 500,
         height: 50
     }),
+    new Platform({
+        x: canvas.width,
+        y: 0,
+        width: 5000,
+        height: canvas.height
+    }),
+    new Platform({
+        x: -5000,
+        y: 0,
+        width: 5000,
+        height: canvas.height
+    }),
+    new Platform({
+        x: -5000,
+        y: canvas.height,
+        width: canvas.width + 10000,
+        height: 5000
+    }),
+    
 ]
 
 const keys = {
@@ -214,14 +237,18 @@ function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = '#1c1c1c'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    player.update()
+    
 
 
     player.velocity.x = 0
-    if (keys.d.pressed) player.velocity.x = 7
-    else if (keys.a.pressed) player.velocity.x = -7
+    if (keys.d.pressed) {
+        player.velocity.x = 7
+    }
+    else if (keys.a.pressed) {
+        player.velocity.x = -7
+    }
 
-
+    
     
     platforms.forEach(platform => {
         platform.draw()
@@ -234,10 +261,32 @@ function animate() {
         ) {
             player.velocity.y = 0;
         }
+
+        if (
+            player.position.y + player.height > platform.position.y &&
+            player.position.y < platform.position.y + platform.height &&
+            player.position.x + 100 <= platform.position.x &&
+            player.position.x + 100 + player.velocity.x >= platform.position.x
+        ) {
+            player.velocity.x = 0
+        }
+
+        if (
+            player.position.y + player.height > platform.position.y &&
+            player.position.y < platform.position.y + platform.height &&
+            player.position.x >= platform.position.x + platform.width &&
+            player.position.x + player.velocity.x <= platform.position.x + platform.width
+        ) {
+            player.velocity.x = 0
+        }
+        
+
     })
     
+    scrollOffset.y += player.velocity.y
+    scrollOffset.x += player.velocity.x
+    player.update()
 
-    
 
 }
 
